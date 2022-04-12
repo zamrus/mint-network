@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Header from './components/Header';
+import Navbar from './components/Navbar';
+import Profile from './components/Profile';
+import Users from './components/Users';
+import Messages from './components/Messages';
+import Settings from './components/Settings';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React simply
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div id='appWrapper'>
+        <Header />
+        <Navbar />        
+        <div id='dynamicSection'>
+          <Routes>
+            <Route path='/profile' element={<Profile />} />
+            <Route path='/users' element={<Users />} />
+            <Route path='/messages' element={<Messages />} />
+            <Route path='/settings' element={<Settings />} />
+          </Routes>
+        </div>
+      </div>
+    </BrowserRouter>
   );
 }
 
