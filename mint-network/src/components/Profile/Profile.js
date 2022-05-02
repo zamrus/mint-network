@@ -8,7 +8,7 @@ const Profile = () => {
         <div>
             Banner
             <ProfileInfo />
-            <NewPost text={'new post'} />
+            <NewPost />
 
         </div>
     )
