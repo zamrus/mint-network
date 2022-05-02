@@ -1,11 +1,13 @@
-import {createStore, combineReducers} from 'redux';
+import {configureStore } from '@reduxjs/toolkit';
 import profileReducer from './reducers/profileReducer';
 
-let reducers = combineReducers({
-    profile: profileReducer
-})
 
-let store = createStore(reducers);
+
+const store = configureStore({
+    reducer: {
+        profile: profileReducer
+    }
+});
 
 export default store;
 
