@@ -1,27 +1,24 @@
-const ADD_POST = 'profile/ADD_POST';
-const NEW_POST_TEXT = 'profile/NEW_POST_TEXT';
+import { createSlice } from '@reduxjs/toolkit';
 
 let initialState = {
-    postsData: [],
-    newPostText: 'hello, im from redux',
-    profileStatus: '',
+    newPostText: '',
+    posts: []
 }
 
-const profileReducer = (state = initialState, action) => {
-    switch(action.type) {
-        case ADD_POST: {
-            let stateCopy = {...state};
-            return stateCopy;
+let profileSlice = createSlice({
+    name: 'profile',
+    initialState,
+    reducers: {
+        typeNewPost(state, action) {
+            state.newPostText = action.payload;
+        },
+        addPost(state) {
+            let post = state.newPostText;
+            state.posts.push({id: '1', text: post});
+            
         }
-        case NEW_POST_TEXT: {
-            let stateCopy = {...state};
-            return stateCopy; 
-        }
-        default: 
-            return state;
     }
-}
+})
 
-export default profileReducer;
-
-// nope, not today
+export const {typeNewPost, addPost} = profileSlice.actions;
+export default profileSlice.reducer;
