@@ -14,7 +14,10 @@ const Navbar = () => {
             <NavLink to='/messages'>Messages</NavLink>
           </div>
           <div>
-          <NavLink to='/settings'>Settings</NavLink>
+            <NavLink to='/settings'>Settings</NavLink>
+          </div>
+          <div>
+            <NavLink to='/login'>Login</NavLink>
           </div>  
         </nav>
     )
