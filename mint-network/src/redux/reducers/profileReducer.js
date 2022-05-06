@@ -17,6 +17,7 @@ let profileSlice = createSlice({
         addPost(state) {
             let post = state.newPostText;
             state.posts.push({id: '1', text: post});
+            state.newPostText = '';
         },
         addStatus(state, action) {
             state.profileStatus = action.payload; 
