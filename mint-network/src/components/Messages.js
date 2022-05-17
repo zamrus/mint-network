@@ -9,11 +9,14 @@ const Messages = (props) => {
     let uimessages = props.msg.map((obj) => {
         return <div>{obj.text}</div>
     })
+
+    let uiAddedUsers = props.addedUsers.map((obj) => {
+        return <div>{obj.name}</div>
+    })
     
     return (
         <div>
-            Messages info
-            <div>список добавленных пользователей или ничего</div>
+            <div>{uiAddedUsers}</div>
             <div>
                 <textarea onChange={(event) => dispatch(typeNewMessage(event.target.value))} value={props.message}></textarea>
             </div>
@@ -30,8 +33,9 @@ const Messages = (props) => {
 const MessagesContainer = () => {
     let message = useSelector(state => state.messages.newMessageText);
     let msg = useSelector(state => state.messages.messages);
+    let addedUsers = useSelector(state => state.messages.addedUsers);
     return (
-        <Messages message={message} msg={msg} />
+        <Messages message={message} msg={msg} addedUsers={addedUsers} />
     )
 }
 
