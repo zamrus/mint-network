@@ -2,13 +2,13 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Navbar from './components/Navbar';
-import Users from './components/Users';
 import MessagesContainer from './components/Messages';
 import Settings from './components/Settings';
 import Login from './components/Login';
 import { useDispatch, useSelector } from 'react-redux';
 import { initializeApp } from './redux/reducers/appReducer';
 import ProfileContainer from './components/Profile/Profile';
+import UsersContainer from './components/Users/Users';
 
 
 const App = () => {
@@ -20,7 +20,7 @@ const App = () => {
         <div id='dynamicSection'>
           <Routes>
             <Route path='/profile' element={<ProfileContainer />} />
-            <Route path='/users' element={<Users />} />
+            <Route path='/users' element={<UsersContainer />} />
             <Route path='/messages' element={<MessagesContainer />} />
             <Route path='/settings' element={<Settings />} />
             <Route path='/login' element={<Login />}/>
