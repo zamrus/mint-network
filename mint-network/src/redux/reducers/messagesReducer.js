@@ -2,6 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 
 let initialState = {
     newMessageText: '',
+    addedUsers: [
+        {id: 1, name: 'Vasya'},
+        {id: 2, name: 'Dasha'},
+        {id: 3, name: 'Olga'},
+        {id: 4, name: 'Lera'},
+        {id: 5, name: 'Dima'},
+    ],
     messages: []
 }
 
