@@ -2,13 +2,15 @@ import {configureStore } from '@reduxjs/toolkit';
 import profileReducer from './reducers/profileReducer';
 import messagesReducer from './reducers/messagesReducer';
 import appReducer from './reducers/appReducer';
+import usersReducer from './reducers/usersReducer';
 
 
 const store = configureStore({
     reducer: {
         app: appReducer,
         profile: profileReducer,
-        messages: messagesReducer
+        messages: messagesReducer,
+        users: usersReducer
     }
 });
 
