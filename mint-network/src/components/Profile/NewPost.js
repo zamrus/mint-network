@@ -1,12 +1,17 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { addPost, typeNewPost } from "../../redux/reducers/profileReducer";
+import { addPost, deletePost, typeNewPost } from "../../redux/reducers/profileReducer";
 
 const NewPost = (props) => {
     const dispatch = useDispatch();
    
     let uiposts = props.posts.map((obj) => {
-        return <div>{obj.text}</div>
+        return (
+            <div>
+                <div>{obj.text}</div>
+                <button onClick={() => dispatch(deletePost(obj.id))}>delete post</button>
+            </div>
+        )
     })
     return (
         <div>
