@@ -1,21 +1,20 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Header from './components/Header';
-import Navbar from './components/Navbar';
-import MessagesContainer from './components/Messages';
-import Settings from './components/Settings';
-import Login from './components/Login';
-import { useDispatch, useSelector } from 'react-redux';
-import { initializeApp } from './redux/reducers/appReducer';
+import { useSelector } from 'react-redux';
 import ProfileContainer from './components/Profile/Profile';
 import UsersContainer from './components/Users/Users';
+import MessagesContainer from './components/Messages';
+import HeaderContainer from './components/Header';
+import Navbar from './components/Navbar';
+import Settings from './components/Settings';
+import Login from './components/Login';
 
 
 const App = () => {
   return (
     <BrowserRouter>
-      <div id='appWrapper'>
-        <Header />
+      <div id='appWrapper'> 
+        <HeaderContainer />
         <Navbar />        
         <div id='dynamicSection'>
           <Routes>
@@ -31,17 +30,18 @@ const App = () => {
   );
 }
 
+// div id='appWrapper' == <AppWrapper> s-c
+// div id='dynamicSection' == <DynamicSection> s-c
+
 const AppContainer = () => {
-  let initialized = useSelector(state => state.app.initialized);
-  let dispatch = useDispatch();
+
+  let login = useSelector(state => state.app.login);
+  
   return (
     <div>
-      {initialized 
+      {login 
       ? <App />
-      : <div>
-          not auth
-          <button onClick={() => dispatch(initializeApp())}>enter</button>
-        </div>
+      : <Login />
       }
     </div>
   )
