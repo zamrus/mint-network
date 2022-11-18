@@ -1,18 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 let initialState = {
-    initialized: false
+    login: false,
+    nickName: 'LionKing'
 }
 
 let appSlice = createSlice({
     name: 'app',
     initialState,
     reducers: {
-        initializeApp(state) {
-            state.initialized = true;
+        login(state) {
+            state.login = true;
+        },
+        logout(state) {
+            state.login = false;
         }
     }
 })
 
-export const { initializeApp } = appSlice.actions;
+export const { login, logout } = appSlice.actions;
 export default appSlice.reducer;
