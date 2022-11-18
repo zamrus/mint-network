@@ -1,15 +1,26 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../redux/reducers/appReducer";  
 
-const Header = () => {
+
+const Header = (props) => {
+  let dispatch = useDispatch();
     return (
-        <header>
+      <header>
         <div>LOGO</div>
         <div>
-          <span>nickname</span>
-          <button>login/logout</button>
+          <span>{props.nickName}</span>
+          <button onClick={() => dispatch(logout())}>logout</button>
         </div>
       </header>
     )
 }
 
-export default Header;
+const HeaderContainer = () => {
+  let nickName = useSelector(state => state.app.nickName);
+  return (
+    <Header nickName={nickName} />
+  )
+}
+
+export default HeaderContainer;
