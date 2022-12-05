@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 let initialState = {
-    login: false,
+    initialized: false,
     nickName: 'LionKing'
 }
 
@@ -10,10 +10,10 @@ let appSlice = createSlice({
     initialState,
     reducers: {
         login(state) {
-            state.login = true;
+            state.initialized = true;
         },
         logout(state) {
-            state.login = false;
+            state.initialized = false;
         }
     }
 })
