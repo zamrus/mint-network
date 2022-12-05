@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileContainer from './components/Profile/Profile';
@@ -22,7 +22,6 @@ const App = () => {
             <Route path='/users' element={<UsersContainer />} />
             <Route path='/messages' element={<MessagesContainer />} />
             <Route path='/settings' element={<Settings />} />
-            <Route path='/login' element={<Login />}/>
           </Routes>
         </div>
       </div>
@@ -35,16 +34,20 @@ const App = () => {
 
 const AppContainer = () => {
 
-  let login = useSelector(state => state.app.login);
-  
+ let initialized = useSelector(state => state.app.initialized);
+
+ useEffect(() => {
+   console.log('server request: initialied or not')
+}, [])
+
   return (
     <div>
-      {login 
-      ? <App />
-      : <Login />
-      }
+      { initialized
+        ? <App />
+        : <Login /> // later it will be preloader
+      } 
     </div>
   )
 }
-
+ 
 export default AppContainer;
