@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'; 
 
 let initialState = {
-    newMessageText: '',
     addedUsers: [
         {id: 1, name: 'Vasya'},
         {id: 2, name: 'Dasha'},
@@ -16,16 +15,12 @@ let messagesSlice = createSlice({
     name: 'messages',
     initialState,
     reducers: {
-        typeNewMessage(state, action) {
-            state.newMessageText = action.payload;
-        },
-        sendMessage(state) {
-            let message = state.newMessageText;
-            state.messages.push({id: 1, text: message});
-            state.newMessageText = '';
+        sendMessage(state, action) {
+            let message = action.payload;
+            state.messages.push({id: 1, text: message});        
         }
     }
 })
 
-export const {typeNewMessage, sendMessage} = messagesSlice.actions;
+export const {sendMessage} = messagesSlice.actions;
 export default messagesSlice.reducer;
