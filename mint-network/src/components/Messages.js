@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { sendMessage, typeNewMessage } from "../redux/reducers/messagesReducer";
+import { sendMessage } from "../redux/reducers/messagesReducer";
 
 const Messages = (props) => {
  
     let dispatch = useDispatch();
    
+    let [newMessageText, changeNewMessage] = useState('');
+
+    let typeNewMessage = (event) => changeNewMessage(event.target.value);
+
+    let setMessage = () => {
+        dispatch(sendMessage(newMessageText));
+        changeNewMessage('');
+    }
+
+    useEffect(() => {
+        console.log(`total messages: ${props.msg.length}`);
+    }, [props.msg])
+
     let uimessages = props.msg.map((obj) => {
         return <div>{obj.text}</div>
     })
@@ -18,10 +31,10 @@ const Messages = (props) => {
         <div>
             <div>{uiAddedUsers}</div>
             <div>
-                <textarea onChange={(event) => dispatch(typeNewMessage(event.target.value))} value={props.message}></textarea>
+                <textarea onChange={typeNewMessage} value={newMessageText}></textarea>
             </div>
             <div>
-                <button onClick={() => dispatch(sendMessage())}>Отправить</button>
+                <button onClick={setMessage}>Отправить</button>
             </div>
             <div>
                 {uimessages}
@@ -31,11 +44,10 @@ const Messages = (props) => {
 }
 
 const MessagesContainer = () => {
-    let message = useSelector(state => state.messages.newMessageText);
     let msg = useSelector(state => state.messages.messages);
     let addedUsers = useSelector(state => state.messages.addedUsers);
     return (
-        <Messages message={message} msg={msg} addedUsers={addedUsers} />
+        <Messages msg={msg} addedUsers={addedUsers} />
     )
 }
 
