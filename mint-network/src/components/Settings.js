@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Settings = () => {
 
@@ -15,6 +16,16 @@ const Settings = () => {
     useEffect(() => {
        console.log(`checking useEffect + ${count}`);
     }, [count]); 
+
+    const navigate = useNavigate();
+    
+    let num = 1;
+
+    useEffect(() => {
+        if(num === 1) {
+            navigate('/users');
+        }
+    })
 
     return (
         <div>
