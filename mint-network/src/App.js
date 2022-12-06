@@ -12,7 +12,6 @@ import Login from './components/Login';
 
 const App = () => {
   return (
-    <BrowserRouter>
       <div id='appWrapper'> 
         <HeaderContainer />
         <Navbar />        
@@ -25,7 +24,6 @@ const App = () => {
           </Routes>
         </div>
       </div>
-    </BrowserRouter>
   );
 }
 
@@ -34,17 +32,15 @@ const App = () => {
 
 const AppContainer = () => {
 
- let initialized = useSelector(state => state.app.initialized);
+  useEffect(() => {console.log('server request: initialied or not')}, [])
 
- useEffect(() => {
-   console.log('server request: initialied or not')
-}, [])
+  let initialized = useSelector(state => state.app.initialized);
 
   return (
     <div>
       { initialized
         ? <App />
-        : <Login /> // later it will be preloader
+        : <Login />
       } 
     </div>
   )
