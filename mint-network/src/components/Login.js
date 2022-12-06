@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { login } from '../redux/reducers/appReducer';
 
 const Login = () => {
     let dispatch = useDispatch();
+    let navigate = useNavigate();
+
+    let toProfilePage = () => {
+        dispatch(login());
+        navigate('/profile');
+    }
+   
     return (
         <div>
             <div>
@@ -15,7 +23,7 @@ const Login = () => {
             <div>
                 <input type='checkbox' /> remember me
             </div>
-            <button onClick={() => dispatch(login())}>enter</button>
+            <button onClick={toProfilePage}>enter</button>
         </div>
     )
 }
