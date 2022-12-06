@@ -2,10 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 let initialState = {
     usersData: [
-        {id: 1, name: 'Nikita', followed: false},
-        {id: 2, name: 'Sergey', followed: false},
-        {id: 3, name: 'Oksana', followed: false},
-        {id: 4, name: 'Nina', followed: false}
+        {id: 1, name: 'Nikita', followed: false, status: 'vezde pobrito'},
+        {id: 2, name: 'Sergey', followed: false, status: 'ser gay'},
+        {id: 3, name: 'Oksana', followed: false, status: 'ksyuha koz`e uho'},
+        {id: 4, name: 'Nina', followed: false, status: 'nina konina'}
     ],
     isFollowing: []
 }
