@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 const Users = (props) => {
   let usersList = props.usersData.map(obj => {
-    return <OneUser id={obj.id} name={obj.name} followed={obj.followed} />
+    return <OneUser id={obj.id} name={obj.name} followed={obj.followed} status={obj.status} key={obj.id} />
   })
   return (
     <div>

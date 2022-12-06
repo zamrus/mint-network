@@ -15,7 +15,7 @@ const OneUser = (props) => {
                   : <button onClick={() => dispatch(follow(props.id))}>follow</button>
                 }
             </div>
-            <div>статус пользователя</div>
+            <div>{props.status}</div>
         </div>
     )
 }
