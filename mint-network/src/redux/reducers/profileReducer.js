@@ -1,24 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 let initialState = {
-    newPostText: '',
     changingPostText: '',
     posts: [],
     profileStatus: 'Hello',
-
 }
 
 let profileSlice = createSlice({
     name: 'profile',
     initialState,
     reducers: {
-        typeNewPost(state, action) { // для печати нового поста
-            state.newPostText = action.payload;
-        },
-        addNewPost(state) { // добавлет новый пост
-            let post = state.newPostText;
+        addNewPost(state, action) { // добавлет новый пост
+            let post = action.payload;
             state.posts.push({id: state.posts.length, text: post, changed: false});
-            state.newPostText = '';
         },
         deletePost(state, action) { // проверяет айдишник, убирает пост 
             state.posts.forEach((post) => {
@@ -37,13 +31,10 @@ let profileSlice = createSlice({
                 }     
             })
         },
-        changeCurrentPost(state, action) { // посимвольное изменение текста в поле ввода
-           state.changingPostText = action.payload;
-        },
-        completeChangePost(state) { // изменяет текущий пост
+        completeChangePost(state, action) { // изменяет текущий пост
             state.posts.forEach(post => {
                 if(post.changed) {
-                    post.text = state.changingPostText;
+                    post.text = action.payload;
                     state.changingPostText = '';
                     post.changed = false;
                 }
@@ -55,5 +46,5 @@ let profileSlice = createSlice({
     }
 })
 
-export const {typeNewPost, addNewPost, deletePost, setChangingPost, changeCurrentPost, completeChangePost, addStatus} = profileSlice.actions;
+export const {addNewPost, deletePost, setChangingPost, completeChangePost, addStatus} = profileSlice.actions;
 export default profileSlice.reducer;
