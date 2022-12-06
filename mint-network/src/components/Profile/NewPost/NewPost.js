@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addNewPost, typeNewPost } from "../../../redux/reducers/profileReducer";
+import { addNewPost } from "../../../redux/reducers/profileReducer";
 import PostChanged from "./PostChanged";
 import PostUnchanged from "./PostUnchanged";
 
@@ -8,6 +8,13 @@ import PostUnchanged from "./PostUnchanged";
 const NewPost = (props) => {
 
     const dispatch = useDispatch();
+
+    let [newPostText, changeNewPostText] = useState('');
+
+    let sendNewPost = () => {
+        dispatch(addNewPost(newPostText));
+        changeNewPostText('');
+    }
    
     let uiposts = props.posts.map((obj) => {
         return (
@@ -21,10 +28,10 @@ const NewPost = (props) => {
     }) // логика написания исправления уже созданного поста
     return (
         <div>
-            <textarea value={props.newValue} onChange={(event) => {
-                dispatch(typeNewPost(event.target.value));
+            <textarea value={newPostText} onChange={(event) => {
+                changeNewPostText(event.target.value);
             }}></textarea>
-            <button onClick={() => dispatch(addNewPost())}>добавить пост</button>
+            <button onClick={sendNewPost}>добавить пост</button>
             <div>{uiposts}</div>
         </div>
     )
