@@ -1,18 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { changeCurrentPost, completeChangePost } from "../../../redux/reducers/profileReducer";
+import { completeChangePost } from "../../../redux/reducers/profileReducer";
 
 
 const PostChanged = (props) => {
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+
+    let [changingPostText, changePost] = useState(props.changingValue);
 
     return (
         <div>
             <textarea autoFocus 
-                      value={props.changingValue} 
-                      onChange={(e) => {dispatch(changeCurrentPost(e.target.value))}}></textarea>
-            <button onClick={() => dispatch(completeChangePost())}>done</button>
+                      value={changingPostText} 
+                      onChange={(e) => {changePost(e.target.value)}}></textarea>
+            <button onClick={() => dispatch(completeChangePost(changingPostText))}>done</button>
         </div>
     )
 }
