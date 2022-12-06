@@ -24,7 +24,12 @@ const Messages = (props) => {
     })
 
     let uiAddedUsers = props.addedUsers.map((obj) => {
-        return <div>{obj.name}</div>
+        return (
+            <div>
+                <span>{obj.name}</span>
+                <span>{`${obj.followed ? ' followed' : ' unfollowed'}`}</span>
+            </div>
+        )
     })
     
     return (
@@ -45,7 +50,7 @@ const Messages = (props) => {
 
 const MessagesContainer = () => {
     let msg = useSelector(state => state.messages.messages);
-    let addedUsers = useSelector(state => state.messages.addedUsers);
+    let addedUsers = useSelector(state => state.users.usersData);
     return (
         <Messages msg={msg} addedUsers={addedUsers} />
     )
